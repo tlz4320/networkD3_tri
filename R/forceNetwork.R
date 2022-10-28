@@ -152,6 +152,7 @@ forceNetwork <- function(Links,
                          Value,
                          NodeID,
                          Nodesize,
+                         Nodeshape = NULL,
                          Group,
                          height = NULL,
                          width = NULL,
@@ -161,6 +162,8 @@ forceNetwork <- function(Links,
                          linkDistance = 50,
                          linkWidth = JS("function(d) { return Math.sqrt(d.value); }"),
                          radiusCalculation = JS(" Math.sqrt(d.nodesize)+6"),
+                         shapeCalculation = JS(" d.nodeshape"),
+
                          charge = -30,
                          linkColour = "#666",
                          opacity = 0.6,
@@ -207,7 +210,12 @@ forceNetwork <- function(Links,
             names(NodesDF) <- c("name", "group")
             nodesize = FALSE
     }
-
+    if (!missing(Nodeshape)){
+            NodesDF$nodeshape <- Nodes[, Nodeshape]
+            nodeshape = TRUE
+    } else {
+            nodeshape = FALSE
+    }
     LinksDF <- data.frame(LinksDF, colour = linkColour)
     LinksDF$colour = as.character(LinksDF$colour)
 
@@ -228,6 +236,8 @@ forceNetwork <- function(Links,
             legend = legend,
             arrows = arrows,
             nodesize = nodesize,
+            nodeshape = nodeshape,
+            shapeCalculation = shapeCalculation,
             radiusCalculation = radiusCalculation,
             bounded = bounded,
             opacityNoHover = opacityNoHover,
