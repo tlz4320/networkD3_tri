@@ -1,4 +1,4 @@
-Package: networkD3
+Package: networkD3_tri
 Type: Package
 Title: D3 JavaScript Network Graphs from R
 Description: Creates 'D3' 'JavaScript' network, tree, dendrogram, and Sankey
