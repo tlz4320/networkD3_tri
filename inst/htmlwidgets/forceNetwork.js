@@ -34,6 +34,14 @@ HTMLWidgets.widget({
                     return 6}
 
     }
+    function nodeShape(d) {
+            if(options.nodeshape){
+                    return eval(options.shapeCalculation);
+
+            }else{
+                    return "circle"}
+
+    }
 
 
     // alias options
@@ -167,12 +175,21 @@ HTMLWidgets.widget({
       .on("mouseout", mouseout)
       .on("click", click)
       .call(drag);
+var arc = d3.symbol().type(d3.symbolTriangle);
+	if(nodeShape(d) == "circle"){
+	node.append("circle")
+		.attr("r", function(d){return nodeSize(d);})
+		.style("stroke", "#fff")
+		.style("opacity", options.opacity)
+		.style("stroke-width", "1.5px");
+	} else {
+	node.append("path")
+	  .attr("d", arc)
+	  .style("stroke", "#fff")
+	  .style("opacity", options.opacity)
+	  .style("stroke-width", "1.5px");
+	}
 
-    node.append("circle")
-      .attr("r", function(d){return nodeSize(d);})
-      .style("stroke", "#fff")
-      .style("opacity", options.opacity)
-      .style("stroke-width", "1.5px");
 
     node.append("svg:text")
       .attr("class", "nodetext")
