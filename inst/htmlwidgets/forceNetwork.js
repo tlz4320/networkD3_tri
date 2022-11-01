@@ -36,7 +36,7 @@ HTMLWidgets.widget({
     }
     function nodeShape(d) {
             if(options.nodeshape){
-                    return eval(options.shapeCalculation);
+                    return eval(options.shapeCalculation)(d);
 
             }else{
                     return "circle"}
@@ -175,21 +175,19 @@ HTMLWidgets.widget({
       .on("mouseout", mouseout)
       .on("click", click)
       .call(drag);
-var arc = d3.symbol().type(d3.symbolTriangle);
-	if(nodeShape(d) == "circle"){
-	node.append("circle")
-		.attr("r", function(d){return nodeSize(d);})
-		.style("stroke", "#fff")
-		.style("opacity", options.opacity)
-		.style("stroke-width", "1.5px");
-	} else {
-	node.append("path")
-	  .attr("d", arc)
-	  .style("stroke", "#fff")
-	  .style("opacity", options.opacity)
-	  .style("stroke-width", "1.5px");
-	}
-
+      
+    node.filter(function(x){return nodeShape(x) == "circle" }).append("circle")
+	.attr("r", function(d){return nodeSize(d);})
+    		.style("stroke", "#fff")
+    		.style("opacity", options.opacity)
+    		.style("stroke-width", "1.5px");
+	node.filter(function(x){return nodeShape(x) != "circle" }).append("path")
+	.attr("d", function(d){
+		return d3.symbol().size(nodeSize(d) * nodeSize(d) * 2).type(d3.symbolTriangle)();
+	})
+    		.style("stroke", "#fff")
+    		.style("opacity", options.opacity)
+    		.style("stroke-width", "1.5px");
 
     node.append("svg:text")
       .attr("class", "nodetext")

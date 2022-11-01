@@ -162,7 +162,7 @@ forceNetwork <- function(Links,
                          linkDistance = 50,
                          linkWidth = JS("function(d) { return Math.sqrt(d.value); }"),
                          radiusCalculation = JS(" Math.sqrt(d.nodesize)+6"),
-                         shapeCalculation = JS(" d.nodeshape"),
+                         shapeCalculation = JS("function(d){return d.nodeshape;}"),
 
                          charge = -30,
                          linkColour = "#666",
@@ -251,7 +251,7 @@ forceNetwork <- function(Links,
             width = width,
             height = height,
             htmlwidgets::sizingPolicy(padding = 10, browser.fill = TRUE),
-            package = "networkD3"
+            package = "networkD32"
     )
 }
 
@@ -259,7 +259,7 @@ forceNetwork <- function(Links,
 #' @export
 forceNetworkOutput <- function(outputId, width = "100%", height = "500px") {
         shinyWidgetOutput(outputId, "forceNetwork", width, height,
-                          package = "networkD3")
+                          package = "networkD32")
 }
 
 #' @rdname networkD3-shiny

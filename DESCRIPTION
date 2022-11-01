@@ -1,9 +1,9 @@
-Package: networkD3_tri
+Package: networkD32
 Type: Package
 Title: D3 JavaScript Network Graphs from R
 Description: Creates 'D3' 'JavaScript' network, tree, dendrogram, and Sankey
     graphs from 'R'.
-Version: 0.4.9000
+Version: 0.9.9
 Date: 2017-06-18
 Authors@R: c(
     person("J.J.", "Allaire", role = "aut"),
@@ -18,9 +18,8 @@ Authors@R: c(
     person("Charles", "Sese", role = "ctb"),
     person("CJ", "Yetman", email = "cj@cjyetman.com", role = "aut")
     )
-URL: https://christophergandrud.github.io/networkD3/, 
-    https://github.com/christophergandrud/networkD3
-BugReports: https://github.com/christophergandrud/networkD3/issues
+URL: https://github.com/tlz4320/networkD3_tri
+BugReports: https://github.com/tlz4320/networkD3_tri/issues
 License: GPL (>= 3)
 Depends:
     R (>= 3.0.0)
